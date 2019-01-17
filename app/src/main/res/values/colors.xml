@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+
+    <color name="button_disable_solid">#F9F9F9</color>
+    <color name="button_disable_stroke">#ECECEC</color>
+    <color name="button_enable_normal_solid">#FFE503</color>
+    <color name="button_enable_normal_stroke">#F2D903</color>
+    <color name="button_enable_pressed_solid">#E6CF03</color>
+    <color name="button_enable_pressed_stroke">#DAC402</color>
+
+
+</resources>

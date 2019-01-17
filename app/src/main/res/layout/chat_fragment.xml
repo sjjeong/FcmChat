@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="chatVM"
+            type="com.googry.fcmchat.ui.chat.ChatViewModel" />
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="4dp">
+
+        <TextView
+            android:id="@+id/tv_send"
+            enabled="@{chatVM.liveMessage.length != 0}"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_btn_send_selector"
+            android:gravity="center"
+            android:onClick="@{() -> chatVM.sendChat()}"
+            android:text="Send"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@={chatVM.liveMessage}"
+            app:layout_constraintBottom_toBottomOf="@id/tv_send"
+            app:layout_constraintEnd_toStartOf="@id/tv_send"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_send" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_content"
+            replaceAll="@{chatVM.liveChatList}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:overScrollMode="always"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/tv_send"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:reverseLayout="true" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

@@ -1,0 +1,98 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    dataBinding {
+        enabled = true
+    }
+    compileSdkVersion rootProject.compileSdkVersion
+    defaultConfig {
+        applicationId "com.googry.fcmchat"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    // Kotlin
+    // https://github.com/JetBrains/kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+
+    // Support Lib
+    implementation "com.android.support:appcompat-v7:$androidSupportVersion"
+    implementation "com.android.support:cardview-v7:$androidSupportVersion"
+    implementation "com.android.support:design:$androidSupportVersion"
+    implementation "com.android.support:support-v4:$androidSupportVersion"
+    implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
+
+    // RxJava2
+    // https://github.com/ReactiveX/RxAndroid
+    // https://github.com/ReactiveX/RxJava
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+
+    // AAC
+    implementation "android.arch.lifecycle:extensions:$aacLifecycleVersion"
+    kapt "android.arch.lifecycle:compiler:$aacLifecycleVersion"
+
+    // OKHttp3 + Retrofit2
+    // https://github.com/square/okhttp
+    // https://github.com/square/retrofit
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+
+    // Glide
+    // https://github.com/bumptech/glide
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
+
+    // Koin - Kotlin Injection
+    // https://github.com/InsertKoinIO/koin
+    implementation "org.koin:koin-core:$koinAndroidVersion"
+    implementation "org.koin:koin-android:$koinAndroidVersion"
+    implementation "org.koin:koin-android-viewmodel:$koinAndroidVersion"
+
+    // Gson
+    // https://github.com/google/gson
+    implementation "com.google.code.gson:gson:$gsonVersion"
+
+    // Anko
+    // https://github.com/Kotlin/anko
+    implementation "org.jetbrains.anko:anko:$ankoVersion"
+    implementation "org.jetbrains.anko:anko-commons:$ankoVersion"
+
+    // Firebase
+    implementation 'com.google.firebase:firebase-core:16.0.6'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.5'
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
+    implementation 'com.google.firebase:firebase-dynamic-links:16.1.5'
+
+    // RxBinding
+    // dex 에러로 2.2.0으로 업데이트 불가 2.1.1 강제로 사용
+    implementation 'com.jakewharton.rxbinding2:rxbinding-kotlin:2.1.1'
+
+}
+
+//apply plugin: 'com.google.gms.google-services'
