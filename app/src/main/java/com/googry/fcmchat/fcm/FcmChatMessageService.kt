@@ -3,6 +3,7 @@ package com.googry.fcmchat.fcm
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.google.gson.Gson
+import com.googry.fcmchat.data.Cache
 import com.googry.fcmchat.data.enums.FcmPushType.CHAT_ITEM
 import com.googry.fcmchat.data.model.ChatItem
 import com.googry.fcmchat.ext.fromJson
@@ -36,5 +37,6 @@ class FcmChatMessageService
     override fun onNewToken(newToken: String?) {
         super.onNewToken(newToken)
         logE("new token $newToken")
+        Cache.fcmToken = newToken ?: ""
     }
 }

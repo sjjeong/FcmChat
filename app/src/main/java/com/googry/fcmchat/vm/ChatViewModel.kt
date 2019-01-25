@@ -1,4 +1,4 @@
-package com.googry.fcmchat.ui.chat
+package com.googry.fcmchat.vm
 
 import android.arch.lifecycle.MutableLiveData
 import android.os.Build

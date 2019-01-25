@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="homeNavigator"
+            type="com.googry.fcmchat.vm.navigator.HomeNavigator" />
+
+        <variable
+            name="homeVM"
+            type="com.googry.fcmchat.vm.HomeViewModel" />
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.MainActivity">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guide_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_begin="?attr/actionBarSize"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_qr_code"
+            onBlockClick="@{() -> homeNavigator.showQrCode()}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_qr_code"
+            android:tint="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="@id/guide_toolbar"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_add_person"
+            onBlockClick="@{() -> homeNavigator.showAddPerson()}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_person_add"
+            android:tint="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="@id/guide_toolbar"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@id/iv_qr_code"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guide_toolbar" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

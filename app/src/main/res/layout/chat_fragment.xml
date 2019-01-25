@@ -6,7 +6,7 @@
 
         <variable
             name="chatVM"
-            type="com.googry.fcmchat.ui.chat.ChatViewModel" />
+            type="com.googry.fcmchat.vm.ChatViewModel" />
 
     </data>
 

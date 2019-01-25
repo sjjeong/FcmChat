@@ -9,6 +9,7 @@ import com.googry.fcmchat.base.ui.SimpleRecyclerView
 import com.googry.fcmchat.data.model.ChatItem
 import com.googry.fcmchat.databinding.ChatFragmentBinding
 import com.googry.fcmchat.databinding.ChatItemBinding
+import com.googry.fcmchat.vm.ChatViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
