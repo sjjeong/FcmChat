@@ -1,24 +1,53 @@
 package com.googry.fcmchat.ui.chat
 
 import android.arch.lifecycle.MutableLiveData
+import android.os.Build
 import com.googry.fcmchat.base.ui.BaseViewModel
+import com.googry.fcmchat.data.model.ChatItem
+import com.googry.fcmchat.data.source.FcmChatDataSource
+import com.googry.fcmchat.ext.plusAssign
+import com.googry.fcmchat.network.model.NetworkResponse
+import com.googry.fcmchat.util.bus.RxBus
+import com.googry.fcmchat.util.bus.model.ChatItemEvent
+import io.reactivex.android.schedulers.AndroidSchedulers
 
-class ChatViewModel
-    : BaseViewModel() {
-    val liveChatList = MutableLiveData<List<String>>().apply {
+class ChatViewModel(
+    private val fcmChatDataSource: FcmChatDataSource,
+    private val toKey: String
+) : BaseViewModel() {
+    val liveChatList = MutableLiveData<List<ChatItem>>().apply {
         value = mutableListOf()
     }
 
     val liveMessage = MutableLiveData<String>()
 
-    fun sendChat() {
-        liveChatList.value?.let {
-            liveChatList.value = it.toMutableList().apply {
-                add(0, liveMessage.value ?: "")
+    init {
+        compositeDisposable += RxBus.bus.filter { it is ChatItemEvent }
+            .map { it as ChatItemEvent }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                it.chatItem.isMyMessage = false
+                liveChatList.value = liveChatList.value?.toMutableList()?.apply {
+                    add(0, it.chatItem)
+                }
             }
-            liveMessage.value = ""
-        }
+    }
 
+    fun sendChat() {
+        liveMessage.value?.let { message ->
+            val chatItem = ChatItem(userId = "${Build.MODEL}", message = message)
+            compositeDisposable += fcmChatDataSource.sendChatItem(chatItem, toKey, NetworkResponse(
+                success = {
+                    liveMessage.value = ""
+                    liveChatList.value = liveChatList.value?.toMutableList()?.apply {
+                        add(0, chatItem)
+                    }
+                },
+                failed = {
+
+                }
+            ))
+        }
     }
 
 

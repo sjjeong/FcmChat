@@ -6,12 +6,14 @@ import android.support.v7.app.AppCompatActivity
 import com.googry.fcmchat.R
 import com.googry.fcmchat.ext.replaceFragmentInActivity
 
-abstract class BaseFragmentActivity(private val fragment: Fragment) : AppCompatActivity() {
+abstract class BaseFragmentActivity(private val fragment: Fragment? = null) : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.base_fragment_activity)
-        replaceFragmentInActivity(fragment, R.id.fl_content)
+        fragment?.let {
+            replaceFragmentInActivity(fragment, R.id.fl_content)
+        }
     }
 
 }

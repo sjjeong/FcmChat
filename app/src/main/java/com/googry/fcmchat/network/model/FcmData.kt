@@ -9,7 +9,9 @@ data class FcmData(
     val to: String
 ) {
     data class Data(
-        @SerializedName("temp")
-        val temp: String
+        @SerializedName("push_type")
+        val pushType: String,
+        @SerializedName("push_data")
+        val pushData: Any
     )
 }

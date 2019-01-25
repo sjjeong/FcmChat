@@ -2,6 +2,7 @@ package com.googry.fcmchat
 
 import android.app.Application
 import com.crashlytics.android.Crashlytics
+import com.googry.fcmchat.di.dataSourceModule
 import com.googry.fcmchat.di.networkModule
 import com.googry.fcmchat.di.viewModelModule
 import io.fabric.sdk.android.Fabric
@@ -14,7 +15,8 @@ class FcmChatApplication : Application() {
         startKoin(
             this, arrayListOf(
                 viewModelModule,
-                networkModule
+                networkModule,
+                dataSourceModule
             )
         )
 

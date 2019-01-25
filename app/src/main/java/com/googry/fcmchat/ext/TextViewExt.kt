@@ -6,6 +6,8 @@ import android.text.Html
 import android.widget.TextView
 import com.googry.fcmchat.util.TextViewIntAnimation
 import org.jetbrains.anko.textColorResource
+import java.text.SimpleDateFormat
+import java.util.*
 
 @BindingAdapter(value = ["animInt"])
 fun TextView.setAnimInt(value: Int) {
@@ -24,4 +26,11 @@ fun TextView.setHtmlText(htmlText: String) {
 @BindingAdapter(value = ["textColorResId"])
 fun TextView.setTextColorResId(resId: Int) {
     textColorResource = resId
+}
+
+val sdfTodayDateTime = SimpleDateFormat("aa hh:mm")
+
+@BindingAdapter(value = ["todayDateTime"])
+fun TextView.setTodayDateTime(date: Date) {
+    text = sdfTodayDateTime.format(date)
 }

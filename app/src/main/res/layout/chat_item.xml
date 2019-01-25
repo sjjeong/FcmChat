@@ -5,49 +5,91 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
-            name="chat"
-            type="String" />
+            name="chatItem"
+            type="com.googry.fcmchat.data.model.ChatItem" />
 
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp">
 
 
         <android.support.constraint.Group
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="tv_message,tv_time" />
+            android:visibility="@{chatItem.isMyMessage ? View.VISIBLE : View.GONE }"
+            app:constraint_referenced_ids="tv_my_message,tv_my_time" />
 
         <TextView
-            android:id="@+id/tv_message"
+            android:id="@+id/tv_my_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{chat}"
+            android:text="@{chatItem.message}"
             android:textSize="16dp"
             app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_time"
+            app:layout_constraintStart_toEndOf="@id/tv_my_time"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="이 안에는 채팅 내용이 들어갑니다." />
 
         <TextView
-            android:id="@+id/tv_time"
+            android:id="@+id/tv_my_time"
+            todayDateTime="@{chatItem.time}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginEnd="8dp"
             android:gravity="end"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/tv_message"
+            app:layout_constraintEnd_toStartOf="@id/tv_my_message"
             app:layout_constraintHorizontal_bias="1"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_goneMarginStart="40dp"
             tools:text="오후 11:30" />
+
+
+        <android.support.constraint.Group
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{chatItem.isMyMessage ? View.GONE : View.VISIBLE }"
+            app:constraint_referenced_ids="tv_other_message,tv_other_time" />
+
+        <TextView
+            android:id="@+id/tv_other_time"
+            todayDateTime="@{chatItem.time}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:layout_marginStart="8dp"
+            android:gravity="start"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_other_message"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="오후 11:30" />
+
+        <TextView
+            android:id="@+id/tv_other_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{chatItem.message}"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_other_time"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_goneMarginEnd="40dp"
+            tools:text="이 안에는 채팅 내용이 들어갑니다." />
 
 
     </android.support.constraint.ConstraintLayout>
