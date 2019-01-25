@@ -1,5 +1,6 @@
 package com.googry.fcmchat.ui.home
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -33,6 +34,11 @@ class MainActivity : AppCompatActivity() {
 
         addFragmentInActivity(HomeFragment.newInstance(), R.id.fl_content)
 
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        logE("onActivityResult in Activity")
+        supportFragmentManager.findFragmentById(R.id.fl_content)?.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, data)
     }
 }
