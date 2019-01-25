@@ -38,7 +38,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         logE("onActivityResult in Activity")
-        supportFragmentManager.findFragmentById(R.id.fl_content)?.onActivityResult(requestCode, resultCode, data)
+        supportFragmentManager.findFragmentById(R.id.fl_content)
+            ?.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
     }
 }

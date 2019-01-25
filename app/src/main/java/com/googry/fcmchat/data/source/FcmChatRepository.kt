@@ -24,7 +24,7 @@ class FcmChatRepository(val firebaseApi: FirebaseApi) : FcmChatDataSource {
             .subscribe({
                 if (it.success == 1) {
                     response.success?.invoke(Unit)
-                }else{
+                } else {
                     response.failed?.invoke(it.results[0]["error"] ?: "")
                 }
             }) {

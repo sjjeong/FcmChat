@@ -25,7 +25,10 @@ val networkModule = module {
                 chain.proceed(
                     chain.request()
                         .newBuilder()
-                        .addHeader("Authorization", "key=AAAAKTK-D-Y:APA91bEPtjVP8S4M0ehFo4FWwXwakUgeS6EDlkcuy3FvX99YzBlp7pN-ZULQGe5wGsY--SbjXpytgdXhaiJgUZXR0DmdSTBSbSXQ1dDnSrlRcHflIG1lb6EB24uqErlvUz-sWmhesi1z")
+                        .addHeader(
+                            "Authorization",
+                            "key=AAAAKTK-D-Y:APA91bEPtjVP8S4M0ehFo4FWwXwakUgeS6EDlkcuy3FvX99YzBlp7pN-ZULQGe5wGsY--SbjXpytgdXhaiJgUZXR0DmdSTBSbSXQ1dDnSrlRcHflIG1lb6EB24uqErlvUz-sWmhesi1z"
+                        )
                         .build()
                 )
             }

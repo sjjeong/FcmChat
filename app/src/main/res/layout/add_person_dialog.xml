@@ -5,34 +5,25 @@
 
     <data>
 
-        <variable
-            name="title"
-            type="String" />
+        <import type="android.view.View" />
 
         <variable
-            name="content"
-            type="String" />
+            name="addPersonVM"
+            type="com.googry.fcmchat.vm.AddPersonViewModel" />
 
-        <variable
-            name="no"
-            type="String" />
-
-        <variable
-            name="yes"
-            type="String" />
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="280dp"
-        android:background="@android:color/white"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
 
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:gravity="center"
-            android:text="@{title}"
+            android:text="@{addPersonVM.liveTitle}"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +38,7 @@
             android:gravity="center"
             android:maxHeight="240dp"
             android:minHeight="40dp"
-            android:text="@{content}"
+            android:text="@{addPersonVM.liveContent}"
             app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toTopOf="@id/tv_yes"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +51,8 @@
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:gravity="center"
-            android:text="@{no}"
+            android:text="@{addPersonVM.liveNo}"
+            android:visibility="@{addPersonVM.liveNo == null || addPersonVM.liveNo.length == 0 ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tv_yes"
             app:layout_constraintHorizontal_weight="1"
@@ -72,7 +64,7 @@
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:gravity="center"
-            android:text="@{yes}"
+            android:text="@{addPersonVM.liveYes}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_chainStyle="packed"

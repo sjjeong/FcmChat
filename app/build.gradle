@@ -57,6 +57,8 @@ dependencies {
     // AAC
     implementation "android.arch.lifecycle:extensions:$aacLifecycleVersion"
     kapt "android.arch.lifecycle:compiler:$aacLifecycleVersion"
+    implementation "android.arch.persistence.room:runtime:$aacLifecycleVersion"
+    kapt "android.arch.persistence.room:compiler:$aacLifecycleVersion"
 
     // OKHttp3 + Retrofit2
     // https://github.com/square/okhttp

@@ -5,17 +5,20 @@ import android.view.View
 import com.googry.fcmchat.R
 import com.googry.fcmchat.base.ui.BaseDialogFragment
 import com.googry.fcmchat.databinding.AddPersonDialogBinding
+import com.googry.fcmchat.vm.AddPersonViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class AddPersonDialog
     : BaseDialogFragment<AddPersonDialogBinding>(R.layout.add_person_dialog) {
 
     companion object {
-        const val KEY_FCM_TOKEY = "KEY_FCM_TOKEN"
+        const val KEY_USER_DATA = "KEY_USER_DATA"
 
-        fun newInstance(fcmToken: String, yesClick: () -> Unit, noClick: (() -> Unit)? = null) =
+        fun newInstance(userData: String, yesClick: () -> Unit, noClick: (() -> Unit)? = null) =
             AddPersonDialog().apply {
                 arguments = Bundle().apply {
-                    putString(KEY_FCM_TOKEY, fcmToken)
+                    putString(KEY_USER_DATA, userData)
                 }
                 this.yesClick = yesClick
                 this.noClick = noClick
@@ -25,15 +28,16 @@ class AddPersonDialog
     var yesClick: (() -> Unit)? = null
     var noClick: (() -> Unit)? = null
 
+    private val addPersonViewModel by viewModel<AddPersonViewModel> { parametersOf() }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.run {
-            title = "새로운 사람 추가"
-            content = "새로운 사람을 추가하시겠습니까?"
-            no = "아니요"
-            yes = "네"
+        addPersonViewModel.setUserData(arguments?.getString(KEY_USER_DATA) ?: "")
 
+        binding.run {
+            addPersonVM = addPersonViewModel
             tvYes.setOnClickListener {
+                addPersonViewModel.saveChatRoom()
                 dismissAllowingStateLoss()
                 yesClick?.invoke()
             }

@@ -2,6 +2,7 @@ package com.googry.fcmchat
 
 import android.app.Application
 import com.crashlytics.android.Crashlytics
+import com.googry.fcmchat.di.daoModule
 import com.googry.fcmchat.di.dataSourceModule
 import com.googry.fcmchat.di.networkModule
 import com.googry.fcmchat.di.viewModelModule
@@ -16,7 +17,8 @@ class FcmChatApplication : Application() {
             this, arrayListOf(
                 viewModelModule,
                 networkModule,
-                dataSourceModule
+                dataSourceModule,
+                daoModule
             )
         )
 

@@ -9,5 +9,6 @@ interface FcmChatDataSource {
     fun sendChatItem(
         chatItem: ChatItem,
         to: String,
-        response: NetworkResponse<Unit>): Disposable
+        response: NetworkResponse<Unit>
+    ): Disposable
 }

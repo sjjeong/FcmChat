@@ -1,5 +1,6 @@
 package com.googry.fcmchat.ui.dialog
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import com.googry.fcmchat.R
@@ -22,7 +23,7 @@ class QrCodeDialog : BaseDialogFragment<QrCodeDialogBinding>(R.layout.qr_code_di
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.run {
-            url = arguments?.getString(KEY_URL)
+            url = "${Build.MODEL}#${arguments?.getString(KEY_URL)}"
         }
     }
 }
