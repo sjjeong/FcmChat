@@ -22,12 +22,21 @@ abstract class BaseCustomView<B : ViewDataBinding>
         getAttrs(attrs)
     }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
         initView()
         getAttrs(attrs, defStyleAttr)
     }
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(
+    constructor(
+        context: Context,
+        attrs: AttributeSet?,
+        defStyleAttr: Int,
+        defStyleRes: Int
+    ) : super(
         context,
         attrs,
         defStyleAttr,
@@ -44,7 +53,14 @@ abstract class BaseCustomView<B : ViewDataBinding>
 
     @SuppressLint("CustomViewStyleable")
     private fun getAttrs(attrs: AttributeSet?, defStyle: Int, defStyleRes: Int = 0) {
-        setTypeArray(context.obtainStyledAttributes(attrs, getCustomViewStyle(), defStyle, defStyleRes))
+        setTypeArray(
+            context.obtainStyledAttributes(
+                attrs,
+                getCustomViewStyle(),
+                defStyle,
+                defStyleRes
+            )
+        )
     }
 
     private fun initView() {

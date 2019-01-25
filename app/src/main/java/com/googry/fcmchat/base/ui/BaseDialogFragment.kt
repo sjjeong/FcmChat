@@ -12,11 +12,16 @@ import android.view.View
 import android.view.ViewGroup
 
 
-abstract class BaseDialogFragment<B : ViewDataBinding>(private val layoutId: Int) : DialogFragment() {
+abstract class BaseDialogFragment<B : ViewDataBinding>(private val layoutId: Int) :
+    DialogFragment() {
 
     lateinit var binding: B
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         binding.setLifecycleOwner(this)
         dialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))

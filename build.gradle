@@ -4,7 +4,7 @@ buildscript {
     ext {
         kotlinVersion = '1.2.71'
         gradleVersion = '3.2.1'
-        googleServicesVersion = '4.0.1'
+        googleServicesVersion = '4.2.0'
         compileSdkVersion = 28
         minSdkVersion = 21
         targetSdkVersion = 28
@@ -23,11 +23,15 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            url 'https://maven.fabric.io/public'
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$gradleVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "com.google.gms:google-services:$googleServicesVersion"
+        classpath 'io.fabric.tools:gradle:1.26.1'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -38,6 +42,9 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            url 'https://maven.google.com/'
+        }
     }
 }
 

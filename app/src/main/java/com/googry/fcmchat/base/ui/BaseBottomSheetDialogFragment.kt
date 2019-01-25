@@ -18,7 +18,11 @@ abstract class BaseBottomSheetDialogFragment<B : ViewDataBinding>(private val la
 
     var onDismissListener: (() -> Unit)? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         binding.setLifecycleOwner(this)
         return binding.root
