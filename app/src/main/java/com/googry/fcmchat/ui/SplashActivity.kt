@@ -30,6 +30,7 @@ class SplashActivity : AppCompatActivity() {
                         logE("fcm token $token")
                         Cache.fcmToken = token ?: ""
                         startActivity<MainActivity>()
+                        finish()
                     })
                 logE("addOnSuccessListener")
             }

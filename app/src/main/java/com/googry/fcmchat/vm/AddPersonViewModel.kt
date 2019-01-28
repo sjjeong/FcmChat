@@ -1,10 +1,11 @@
 package com.googry.fcmchat.vm
 
 import android.arch.lifecycle.MutableLiveData
-import android.os.AsyncTask
 import com.googry.fcmchat.base.ui.BaseViewModel
 import com.googry.fcmchat.data.model.ChatRoom
 import com.googry.fcmchat.data.source.ChatRoomDataSource
+import com.googry.fcmchat.ext.plusAssign
+import com.googry.fcmchat.network.model.NetworkResponse
 
 class AddPersonViewModel(private val chatRoomDataSource: ChatRoomDataSource) : BaseViewModel() {
 
@@ -36,11 +37,10 @@ class AddPersonViewModel(private val chatRoomDataSource: ChatRoomDataSource) : B
         }
     }
 
-    fun saveChatRoom() {
+    fun saveChatRoom(response: NetworkResponse<Unit>) {
         chatRoom?.let {
-            AsyncTask.execute {
-                chatRoomDataSource.saveChatRoom(it)
-            }
+            chatRoomDataSource.saveChatRoom(it)
+            compositeDisposable += chatRoomDataSource.sendChatRoom(it.userFcmToken, response)
         }
     }
 

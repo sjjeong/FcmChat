@@ -8,5 +8,5 @@ import org.koin.dsl.module.module
 
 val dataSourceModule = module {
     single<FcmChatDataSource> { FcmChatRepository(get()) }
-    single<ChatRoomDataSource> { ChatRoomRepository(get()) }
+    single<ChatRoomDataSource> { ChatRoomRepository(get(), get()) }
 }

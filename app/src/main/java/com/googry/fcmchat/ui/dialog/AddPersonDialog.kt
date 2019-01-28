@@ -5,6 +5,7 @@ import android.view.View
 import com.googry.fcmchat.R
 import com.googry.fcmchat.base.ui.BaseDialogFragment
 import com.googry.fcmchat.databinding.AddPersonDialogBinding
+import com.googry.fcmchat.network.model.NetworkResponse
 import com.googry.fcmchat.vm.AddPersonViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -37,9 +38,15 @@ class AddPersonDialog
         binding.run {
             addPersonVM = addPersonViewModel
             tvYes.setOnClickListener {
-                addPersonViewModel.saveChatRoom()
-                dismissAllowingStateLoss()
-                yesClick?.invoke()
+                addPersonViewModel.saveChatRoom(NetworkResponse(
+                    success = {
+                        dismissAllowingStateLoss()
+                        yesClick?.invoke()
+                    }, failed = {
+                        dismissAllowingStateLoss()
+                        yesClick?.invoke()
+                    }
+                ))
             }
             tvNo.setOnClickListener {
                 dismissAllowingStateLoss()
